@@ -1,9 +1,9 @@
 const Rate = require('../models/Rate');
 
-const getRate = async (userId, resId) =>{
+const getRate = async (userId, resId) => {
     try {
         const rate = await Rate.findAll({
-            where:{
+            where: {
                 userId: userId,
                 resId: resId,
             }
@@ -15,41 +15,73 @@ const getRate = async (userId, resId) =>{
 }
 
 const createRate = async (data) => {
-    try{
+    try {
         const valid = await Rate.findOne({
-            where:{
-                userId:data.userId,
-                resId:data.resId,
+            where: {
+                userId: data.userId,
+                resId: data.resId,
             }
         });
-        if (valid){
+        if (valid) {
             throw new Error("Rate is existed");
         }
         const createRate = await Rate.create(data);
         return createRate;
-    } catch (error){
+    } catch (error) {
+        throw error;
+    }
+}
+
+const updateRate = async (data, userId, resId) => {
+    try {
+        const valid = await Rate.findOne({
+            where: {
+                userId: userId,
+                resId: resId,
+            }
+        });
+        if (!valid) {
+            throw new Error("Rate is existed");
+        }
+        await Rate.update(data, {
+            where: {
+                userId: userId,
+                resId: resId,
+            }
+        })
+
+        const rate = await Rate.findOne({
+            where: {
+                userId: userId,
+                resId: resId,
+            }
+        });
+
+        return rate;
+
+    } catch (error) {
         throw error;
     }
 }
 
 const deleteRate = async (userId, resId) => {
-    try{
+    try {
         const valid = await Rate.findOne({
-            where:{
+            where: {
                 userId: userId,
                 resId: resId,
             }
         });
-        if(!valid){
+        if (!valid) {
             throw new Error("Rate not found");
         }
         await Rate.destroy({
-            where:{
-                userId:userId,
+            where: {
+                userId: userId,
                 resId: resId,
             }
         })
-    } catch (error){
+    } catch (error) {
         throw error;
     }
 }
@@ -58,5 +90,6 @@ const deleteRate = async (userId, resId) => {
 module.exports = {
     getRate,
     createRate,
+    updateRate,
     deleteRate,
 }

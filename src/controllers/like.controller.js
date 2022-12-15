@@ -24,6 +24,19 @@ const createLike = () => {
      };
 };
 
+const updateLike = () => {
+    return async (req, res) => {
+        try {
+            const {userId, resId} = req.params;
+            const like = req.body
+            const updateLike = await likeService.updateLike(like, userId, resId);
+            res.status(200).json({ data: updateLike });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
+}
+
 const deleteLike  = () => {
     return async (req, res) =>{
         try {
@@ -39,5 +52,6 @@ const deleteLike  = () => {
 module.exports = {
     getLikes,
     createLike,
+    updateLike,
     deleteLike,
 }

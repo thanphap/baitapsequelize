@@ -32,6 +32,38 @@ const createOrder = async (data) => {
     }
 }
 
+const updateOrder = async(data, userId, foodId) => {
+    try {
+        const valid = await Order.findOne({
+            where:{
+                userId: userId,
+                foodId: foodId,
+            }
+        });
+        if (!valid) {
+            throw new Error("Order not found");
+        }
+        await Order.update(data, {
+            where:{
+                userId: userId,
+                foodId: foodId,
+            }
+        })
+
+        const order = await Order.findOne({
+            where:{
+                userId: userId,
+                foodId: foodId,
+            }
+        });
+
+        return order;
+
+    } catch (error) {
+        throw error;
+    }
+}
+
 const deleteOrder = async (userId, foodId) => {
     try {
         const valid = await Order.findOne({
@@ -55,8 +87,10 @@ const deleteOrder = async (userId, foodId) => {
 }
 
 
+
 module.exports = {
     getOrder,
     createOrder,
+    updateOrder,
     deleteOrder,
 }
