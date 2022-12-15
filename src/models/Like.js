@@ -7,13 +7,11 @@ const Like = sequelize.define(
         userId:{
             type: DataTypes.INTEGER,
             primaryKey: true,
-            foreignKey: true,
             field: "user_id",
         },
         resId:{
             type: DataTypes.INTEGER,
             primaryKey: true,
-            foreignKey: true,
             field: "res_id",
         },
         dateLike:{

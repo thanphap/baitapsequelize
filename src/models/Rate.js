@@ -7,13 +7,11 @@ const Rate = sequelize.define(
         userId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            foreignKey: true,
             field: "user_id",
         },
         resId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            foreignKey: true,
             field: "res_id",
         },
         amount: {
@@ -25,7 +23,6 @@ const Rate = sequelize.define(
             field: 'date_rate',
             allowNull: false,
         }
-
     },
     {
         tableName: 'rate_res',

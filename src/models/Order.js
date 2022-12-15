@@ -7,13 +7,11 @@ const Order = sequelize.define(
         userId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            foreignKey: true,
             field: "user_id",
         },
         foodId: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            foreignKey: true,
             field: "food_id",
         },
         amount: {
