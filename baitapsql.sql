@@ -10,11 +10,11 @@
 DROP TABLE IF EXISTS `food`;
 CREATE TABLE `food` (
   `food_id` int NOT NULL AUTO_INCREMENT,
-  `food_name` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `price` float NOT NULL,
-  `desc` varchar(255) NOT NULL,
-  `type_id` int NOT NULL,
+  `food_name` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `desc` varchar(255) DEFAULT NULL,
+  `type_id` int DEFAULT NULL,
   PRIMARY KEY (`food_id`),
   KEY `type_id` (`type_id`),
   CONSTRAINT `food_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `food_type` (`type_id`)
@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `like_res`;
 CREATE TABLE `like_res` (
   `user_id` int NOT NULL,
   `res_id` int NOT NULL,
-  `date_like` datetime NOT NULL,
+  `date_like` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`res_id`),
   KEY `res_id` (`res_id`),
   CONSTRAINT `like_res_ibfk_1` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`),
@@ -56,19 +56,20 @@ CREATE TABLE `rate_res` (
   `user_id` int NOT NULL,
   `res_id` int NOT NULL,
   `amount` int NOT NULL,
-  `date_rate` datetime NOT NULL,
+  `date_rate` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`,`res_id`),
+  UNIQUE KEY `rate_res_resId_userId_unique` (`user_id`,`res_id`),
   KEY `res_id` (`res_id`),
-  CONSTRAINT `rate_res_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `rate_res_ibfk_2` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`)
+  CONSTRAINT `rate_res_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `rate_res_ibfk_2` FOREIGN KEY (`res_id`) REFERENCES `restaurant` (`res_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `restaurant`;
 CREATE TABLE `restaurant` (
   `res_id` int NOT NULL AUTO_INCREMENT,
-  `res_name` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `desc` varchar(255) NOT NULL,
+  `res_name` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `desc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`res_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -85,12 +86,74 @@ CREATE TABLE `sub_food` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `full_name` varchar(255) NOT NULL,
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `email_2` (`email`),
+  UNIQUE KEY `email_3` (`email`),
+  UNIQUE KEY `email_4` (`email`),
+  UNIQUE KEY `email_5` (`email`),
+  UNIQUE KEY `email_6` (`email`),
+  UNIQUE KEY `email_7` (`email`),
+  UNIQUE KEY `email_8` (`email`),
+  UNIQUE KEY `email_9` (`email`),
+  UNIQUE KEY `email_10` (`email`),
+  UNIQUE KEY `email_11` (`email`),
+  UNIQUE KEY `email_12` (`email`),
+  UNIQUE KEY `email_13` (`email`),
+  UNIQUE KEY `email_14` (`email`),
+  UNIQUE KEY `email_15` (`email`),
+  UNIQUE KEY `email_16` (`email`),
+  UNIQUE KEY `email_17` (`email`),
+  UNIQUE KEY `email_18` (`email`),
+  UNIQUE KEY `email_19` (`email`),
+  UNIQUE KEY `email_20` (`email`),
+  UNIQUE KEY `email_21` (`email`),
+  UNIQUE KEY `email_22` (`email`),
+  UNIQUE KEY `email_23` (`email`),
+  UNIQUE KEY `email_24` (`email`),
+  UNIQUE KEY `email_25` (`email`),
+  UNIQUE KEY `email_26` (`email`),
+  UNIQUE KEY `email_27` (`email`),
+  UNIQUE KEY `email_28` (`email`),
+  UNIQUE KEY `email_29` (`email`),
+  UNIQUE KEY `email_30` (`email`),
+  UNIQUE KEY `email_31` (`email`),
+  UNIQUE KEY `email_32` (`email`),
+  UNIQUE KEY `email_33` (`email`),
+  UNIQUE KEY `email_34` (`email`),
+  UNIQUE KEY `email_35` (`email`),
+  UNIQUE KEY `email_36` (`email`),
+  UNIQUE KEY `email_37` (`email`),
+  UNIQUE KEY `email_38` (`email`),
+  UNIQUE KEY `email_39` (`email`),
+  UNIQUE KEY `email_40` (`email`),
+  UNIQUE KEY `email_41` (`email`),
+  UNIQUE KEY `email_42` (`email`),
+  UNIQUE KEY `email_43` (`email`),
+  UNIQUE KEY `email_44` (`email`),
+  UNIQUE KEY `email_45` (`email`),
+  UNIQUE KEY `email_46` (`email`),
+  UNIQUE KEY `email_47` (`email`),
+  UNIQUE KEY `email_48` (`email`),
+  UNIQUE KEY `email_49` (`email`),
+  UNIQUE KEY `email_50` (`email`),
+  UNIQUE KEY `email_51` (`email`),
+  UNIQUE KEY `email_52` (`email`),
+  UNIQUE KEY `email_53` (`email`),
+  UNIQUE KEY `email_54` (`email`),
+  UNIQUE KEY `email_55` (`email`),
+  UNIQUE KEY `email_56` (`email`),
+  UNIQUE KEY `email_57` (`email`),
+  UNIQUE KEY `email_58` (`email`),
+  UNIQUE KEY `email_59` (`email`),
+  UNIQUE KEY `email_60` (`email`),
+  UNIQUE KEY `email_61` (`email`),
+  UNIQUE KEY `email_62` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `food` (`food_id`, `food_name`, `image`, `price`, `desc`, `type_id`) VALUES
 (1, 'Mì Quảng', 'https://upload.wikimedia.org/wikipedia/commons/d/d4/M%C3%AC_Qu%E1%BA%A3ng_Qu%E1%BA%A3ng_Nam.jpg', 15, '...', 1);
@@ -111,7 +174,7 @@ INSERT INTO `food_type` (`type_id`, `type_name`) VALUES
 (3, 'Rau');
 
 INSERT INTO `like_res` (`user_id`, `res_id`, `date_like`) VALUES
-(1, 1, '2022-12-01 08:23:44');
+(1, 1, '2022-12-19 15:39:16');
 INSERT INTO `like_res` (`user_id`, `res_id`, `date_like`) VALUES
 (1, 2, '2022-12-02 10:23:44');
 INSERT INTO `like_res` (`user_id`, `res_id`, `date_like`) VALUES
@@ -125,22 +188,24 @@ INSERT INTO `like_res` (`user_id`, `res_id`, `date_like`) VALUES
 (6, 4, '2022-12-01 08:23:44');
 
 INSERT INTO `order` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
-(1, 1, 3, '121', '[1, 2]');
+(1, 1, 5, '2', '[1, 2]');
 INSERT INTO `order` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
 (1, 2, 4, '122', '[2, 3]');
 INSERT INTO `order` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
-(2, 1, 2, '123', '[1, 3]');
+(3, 2, 4, '124', '[1, 2, 3]');
 INSERT INTO `order` (`user_id`, `food_id`, `amount`, `code`, `arr_sub_id`) VALUES
-(3, 2, 3, '124', '[1, 2, 3]');
+(3, 1, 5, '2', '[1, 2]'),
+(1, 3, 4, '2', '[1, 2]');
 
 INSERT INTO `rate_res` (`user_id`, `res_id`, `amount`, `date_rate`) VALUES
-(1, 1, 2, '2022-12-01 13:23:44');
+(1, 1, 3, '2022-12-19 14:28:31');
 INSERT INTO `rate_res` (`user_id`, `res_id`, `amount`, `date_rate`) VALUES
-(1, 2, 1, '2022-12-03 13:23:44');
+(1, 2, 4, '2022-12-19 14:28:31');
 INSERT INTO `rate_res` (`user_id`, `res_id`, `amount`, `date_rate`) VALUES
-(2, 1, 2, '2022-12-02 13:23:44');
+(2, 2, 3, '2022-12-19 14:28:31');
 INSERT INTO `rate_res` (`user_id`, `res_id`, `amount`, `date_rate`) VALUES
-(3, 3, 2, '2022-12-04 13:23:44');
+(2, 3, 5, '2022-12-19 16:12:20'),
+(2, 4, 4, '2022-12-19 14:28:31');
 
 INSERT INTO `restaurant` (`res_id`, `res_name`, `image`, `desc`) VALUES
 (1, 'Citron', 'https://cdn.tgdd.vn/Files/2022/06/24/1442170/10-nha-hang-da-nang-view-dep-cuc-hap-dan-thuc-khach-202206241704027108.jpg', '...');
@@ -167,17 +232,16 @@ INSERT INTO `sub_food` (`sub_id`, `sub_name`, `sub_price`, `food_id`) VALUES
 (10, 'lợn', 6, 5),
 (11, 'bò', 8, 5);
 
-INSERT INTO `user` (`full_name`, `email`, `password`, `user_id`) VALUES
-('Hoang', 'hoang@gmail.com', '1234', 1);
-INSERT INTO `user` (`full_name`, `email`, `password`, `user_id`) VALUES
-('Loc', 'loc@gmail.com', '1234', 2);
-INSERT INTO `user` (`full_name`, `email`, `password`, `user_id`) VALUES
-('Quang', 'quang@gmail.com', '1234', 3);
-INSERT INTO `user` (`full_name`, `email`, `password`, `user_id`) VALUES
-('Huy', 'huy@gmail.com', '1234', 4),
-('Thanh', 'thanh@gmail.com', '1234', 5),
-('Long', 'long@gmail.com', '1234', 6),
-('Thien', 'thien@gmail.com', '1234', 7);
+INSERT INTO `user` (`user_id`, `full_name`, `email`, `password`) VALUES
+(1, 'hoang', 'hoang@gmail.com', '1234');
+INSERT INTO `user` (`user_id`, `full_name`, `email`, `password`) VALUES
+(2, 'thien', 'thien@gmail.com', '1234');
+INSERT INTO `user` (`user_id`, `full_name`, `email`, `password`) VALUES
+(3, 'hoa', 'hoa@gmail.com', '1234');
+INSERT INTO `user` (`user_id`, `full_name`, `email`, `password`) VALUES
+(4, 'long', 'long@gmail.com', '1234'),
+(5, 'thanh', 'thanh@gmail.com', '1234'),
+(6, 'hai', 'hai@gmail.com', '1234');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

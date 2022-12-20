@@ -1,10 +1,11 @@
 const express = require("express");
-const likeRouter = require("./like.router");
-const rateRouter = require("./rate.router");
-const orderRouter = require("./order.router");
+const restaurantRouter = require("./restaurant.router");
+const userRouter = require("./user.router");
+const foodRouter = require("./food.router");
 
 const v1 = express.Router();
-v1.use('/like', likeRouter);
-v1.use('/rate', rateRouter);
-v1.use('/order', orderRouter);
+
+v1.use('/users',userRouter);
+v1.use('/restaurants', restaurantRouter);
+v1.use('/foods', foodRouter);
 module.exports = v1; 
