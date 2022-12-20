@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
             resName:{
                 type: DataTypes.STRING,
                 field:"res_name",
+                allowNull: false,
             },
             image:{
                 type: DataTypes.STRING,

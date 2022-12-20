@@ -10,11 +10,11 @@
 DROP TABLE IF EXISTS `food`;
 CREATE TABLE `food` (
   `food_id` int NOT NULL AUTO_INCREMENT,
-  `food_name` varchar(255) DEFAULT NULL,
+  `food_name` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `price` float DEFAULT NULL,
+  `price` float NOT NULL,
   `desc` varchar(255) DEFAULT NULL,
-  `type_id` int DEFAULT NULL,
+  `type_id` int NOT NULL,
   PRIMARY KEY (`food_id`),
   KEY `type_id` (`type_id`),
   CONSTRAINT `food_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `food_type` (`type_id`)
@@ -67,7 +67,7 @@ CREATE TABLE `rate_res` (
 DROP TABLE IF EXISTS `restaurant`;
 CREATE TABLE `restaurant` (
   `res_id` int NOT NULL AUTO_INCREMENT,
-  `res_name` varchar(255) DEFAULT NULL,
+  `res_name` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `desc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`res_id`)
@@ -152,7 +152,8 @@ CREATE TABLE `user` (
   UNIQUE KEY `email_59` (`email`),
   UNIQUE KEY `email_60` (`email`),
   UNIQUE KEY `email_61` (`email`),
-  UNIQUE KEY `email_62` (`email`)
+  UNIQUE KEY `email_62` (`email`),
+  UNIQUE KEY `email_63` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `food` (`food_id`, `food_name`, `image`, `price`, `desc`, `type_id`) VALUES

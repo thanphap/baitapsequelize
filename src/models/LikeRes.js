@@ -6,10 +6,12 @@ module.exports = (sequelize) => {
         {
             userId:{
                 type: DataTypes.INTEGER,
+                primaryKey: true,
                 field: "user_id",
             },
             resId:{
                 type: DataTypes.INTEGER,
+                primaryKey: true,
                 field: "res_id",
             },
             dateLike:{

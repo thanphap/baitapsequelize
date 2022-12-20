@@ -12,19 +12,22 @@ module.exports = (sequelize) => {
             foodName: {
                 type: DataTypes.STRING,
                 field: "food_name",
+                allowNull: false,
             },
             image: {
                 type: DataTypes.STRING,
             },
             price: {
                 type: DataTypes.FLOAT,
+                allowNull: false,
             },
             desc: {
                 type: DataTypes.STRING,
             },
             typeId: {
                 type: DataTypes.INTEGER,
-                field: "type_id"
+                field: "type_id",
+                allowNull: false,
             }
         },
         {
